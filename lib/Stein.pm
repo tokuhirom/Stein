@@ -67,6 +67,7 @@ sub handle_request {
 sub _build_child {
     my $self = shift;
 
+    # use Proc::Guard + Net::EmptyPort
     return Test::TCP->new(
         code => sub {
             my $port = shift;
