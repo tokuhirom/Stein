@@ -102,10 +102,6 @@ sub _build_child {
     );
 }
 
-sub _find_carton_lock {
-    my $self = shift;
-}
-
 sub find_file {
     my ($dir, $file) = @_;
     my %seen;
