@@ -21,6 +21,7 @@ my $build = Module::Build->new(
         'Proc::Guard' => 0,
         'Net::EmptyPort' => 0,
         'Test::TCP' => 0,
+        'lib::core::only' => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
