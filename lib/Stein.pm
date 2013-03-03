@@ -159,6 +159,12 @@ Path to psgi application file.
 
 I<Required>
 
+=item plack_env: Str
+
+PLACK_ENV for child process.
+
+I<Requred>
+
 =item timeout: Int
 
 Furl timeout in seconds.
