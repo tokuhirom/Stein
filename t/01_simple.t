@@ -8,7 +8,8 @@ use Plack::Builder;
 
 my $app = builder {
     mount '/hello', Stein->new(
-        psgi => 't/psgi/hello.psgi',
+        psgi => 't/psgi/Hello/hello.psgi',
+        plack_env => 'development',
     )->to_app();
 };
 

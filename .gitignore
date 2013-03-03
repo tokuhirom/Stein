@@ -16,3 +16,4 @@ MYMETA.*
 META.json
 META.yml
 README
+/t/psgi/Hello/local/lib/perl5/darwin-2level/

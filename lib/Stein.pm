@@ -8,10 +8,21 @@ use Test::TCP;
 use Furl 2.07;
 use Plack::Request;
 use HTTP::Request;
+use File::Basename ();
 
 use Mouse;
 
 has psgi => (
+    is => 'ro',
+    isa => 'Str',
+    required => 1,
+    trigger => sub {
+        my ($self, $psgi) = @_;
+        die "There is no file: $psgi" unless -e $psgi;
+    },
+);
+
+has plack_env => (
     is => 'ro',
     isa => 'Str',
     required => 1,
@@ -26,6 +37,20 @@ has child => (
 has timeout => (
     is => 'rw',
     default => sub { 7 },
+);
+
+has base_dir => (
+    is => 'ro',
+    lazy => 1,
+    default => sub {
+        my $self = shift;
+        my $carton_lock = find_file(File::Basename::dirname($self->psgi), 'carton.lock');
+        if ($carton_lock) {
+            File::Basename::dirname($carton_lock);
+        } else {
+            die "There is no carton.lock file around " . $self->psgi;
+        }
+    }
 );
 
 has agent => (
@@ -71,12 +96,27 @@ sub _build_child {
     return Test::TCP->new(
         code => sub {
             my $port = shift;
-            require Plack::Loader;
-            require Plack::Util;
-            my $app = Plack::Util::load_psgi($self->psgi);
-            Plack::Loader->auto(port => $port)->run($app);
+            my $base = $self->base_dir();
+            exec $^X, '-Mlib::core::only', "-Mlib=$base/local/lib/perl5/", '--', "$base/local/bin/plackup", '--port', $port, '-E', $self->plack_env, $self->psgi;
         }
     );
+}
+
+sub _find_carton_lock {
+    my $self = shift;
+}
+
+sub find_file {
+    my ($dir, $file) = @_;
+    my %seen;
+    while ( -d $dir ) {
+        return undef if $seen{$dir}++;    # guard from deep recursion
+        if ( -f "$dir/$file" ) {
+            return "$dir/$file";
+        }
+        $dir = File::Basename::dirname($dir);
+    }
+    return undef;
 }
 
 1;
@@ -95,6 +135,7 @@ Stein - Gate for sub PSGI application
     builder {
         mount '/subapp' => Stein->new(
             psgi => 'path/to/app.psgi',
+            plack_env => 'development',
         )->to_app();
     };
 

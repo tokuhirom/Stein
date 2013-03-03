@@ -20,6 +20,7 @@ my $build = Module::Build->new(
         'Mouse' => 0,
         'Proc::Guard' => 0,
         'Net::EmptyPort' => 0,
+        'Test::TCP' => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
