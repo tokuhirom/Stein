@@ -1,0 +1,80 @@
+{
+   "abstract" : "Gate for sub PSGI application",
+   "author" : [
+      "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v0.0.54, CPAN::Meta::Converter version 2.130870",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Stein",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples",
+         "author"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0.98",
+            "Test::Requires" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion" : "0.10108",
+            "Test::Pod" : "1.41",
+            "Test::Spellunker" : "v0.0.16"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Furl" : "2.07",
+            "HTTP::Request" : "0",
+            "Mouse" : "0",
+            "Net::EmptyPort" : "0",
+            "Plack::Request" : "0",
+            "Proc::Guard" : "0",
+            "Test::TCP" : "0",
+            "lib::core::only" : "0",
+            "parent" : "0",
+            "perl" : "5.008005"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/Stein/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/Stein",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/Stein.git",
+         "web" : "https://github.com/tokuhirom/Stein"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "tokuhirom <tokuhirom@gmail.com>"
+   ]
+}

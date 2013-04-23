@@ -13,7 +13,13 @@ pm_to_blib
 blib/
 META.yml
 MYMETA.*
-META.json
 META.yml
 README
 /t/psgi/Hello/local/lib/perl5/darwin-2level/
+/Stein-*
+/.build
+/_build_params
+/Build
+!Build/
+!META.json
+!LICENSE
